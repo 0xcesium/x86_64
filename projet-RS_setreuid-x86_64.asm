@@ -40,7 +40,7 @@ _start:
 
 
 ; NON AUTORISE NATIVEMENT	; setreuid(0,0)
-	push BYTE 113
+	push BYTE 0x71
 	pop rax
 	xor edi,edi
 	xor esi,esi
