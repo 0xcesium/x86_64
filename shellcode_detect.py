@@ -6,7 +6,6 @@
 
 __author__:'''
 [Cs133]
-Mail: jbillaud@protonmail.com
 Twit: @133_cesium
 '''
 
