@@ -21,7 +21,7 @@ buffer = ""
 for line in sys.stdin.readlines():
   buffer += line
 
-print "[+] Testing buffer of fize %dB ..." % (len(buffer))
+print "[+] Testing buffer of size %dB ..." % (len(buffer))
 
 emulator = pylibemu.Emulator()
 offset = emulator.shellcode_getpc_test(buffer)
