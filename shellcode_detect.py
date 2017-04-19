@@ -45,3 +45,6 @@ else:
     logger.write("[~] Input; " + time.strftime(str(datetime.datetime.now())))
     logger.write("Offset=" + offset)
     logger.write("Input detected=" + bytearray(buffer))
+  
+  # /!\ /!\ /!\
+  emulator.run()  # Could be devastating in case of home built encoded shellcodes.
