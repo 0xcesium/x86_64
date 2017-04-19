@@ -1,12 +1,23 @@
 #!/usr/bin/env python2
-#
-# Simple Shellcode detector using the libemu API
-#
+# Simple Shellcode detector using the libemu API.
+# Can be used as a naïve but still solid basis IDS for testing purpose.
+# Needs to be run as a daemon.
+# TODO: adding self recognition of encoded shellcodes.
+
+__author__:'''
+[Cs133]
+Mail: jbillaud@protonmail.com
+Twit: @133_cesium
+'''
 
 import sys
 import pylibemu
+import datetime
+import time
 
+file_log = "/tmp/shellcode-detector.log"    # Put the chosen log file path here
 buffer = ""
+
 for line in sys.stdin.readlines():
   buffer += line
 
@@ -20,5 +31,10 @@ if offset >= 0:
   emulator.prepare(buffer, offset)
   emulator.test()
   print emulator.emu_profile_output
+  
+  with open(, "a+") as logger:
+    logger.write("[+] New shellcode detected; " + time.strftime(str(datetime.datetime.now())))
+    logger.write(emulator.emu_profile_output)
+
 else:
   print "[-] Nothing here, sir"
