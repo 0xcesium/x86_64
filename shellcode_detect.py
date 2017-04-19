@@ -32,9 +32,16 @@ if offset >= 0:
   emulator.test()
   print emulator.emu_profile_output
   
-  with open(, "a+") as logger:
+  with open(file_log, "a+") as logger:
     logger.write("[+] New shellcode detected; " + time.strftime(str(datetime.datetime.now())))
+    logger.write("Offset=" + offset)
+    logger.write("Shellcode=" + bytearray(buffer)
     logger.write(emulator.emu_profile_output)
 
 else:
   print "[-] Nothing here, sir"
+  
+  with open(file_log, "a+") as logger:
+    logger.write("[~] Input; " + time.strftime(str(datetime.datetime.now())))
+    logger.write("Offset=" + offset)
+    logger.write(bytearray(buffer)
