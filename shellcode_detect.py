@@ -46,4 +46,4 @@ else:
     logger.write("Input detected=" + bytearray(buffer))
   
   # /!\ /!\ /!\
-  emulator.run()  # Could be devastating in case of home built encoded shellcodes.
+  emulator.run(buffer)  # Could be devastating in case of home built encoded shellcodes.
