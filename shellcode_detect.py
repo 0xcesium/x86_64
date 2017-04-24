@@ -42,7 +42,7 @@ else:
   
   with open(file_log, "a+") as logger:
     logger.write("[~] Input; " + time.strftime(str(datetime.datetime.now())))
-    logger.write("Offset=" + offset)
+    logger.write("Offset=" + str(offset))
     logger.write("Input detected=" + bytearray(buffer))
   
   # /!\ /!\ /!\
