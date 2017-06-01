@@ -6,44 +6,58 @@
 
 __author__='''
 [Cs133]
-Twit: @133_cesium
+Twitter: @133_cesium
 '''
 
 import sys
 import pylibemu
-import datetime
-import time
+from time import strftime
+from datetime import datetime
 
 file_log = "/tmp/shellcode-detector.log"    # Put the chosen log file path here
 buffer = ""
 
-for line in sys.stdin.readlines():
-  buffer += line
+def get_ma_time():
+  return strftime(str(datetime.now()))
 
-print "[+] Testing buffer of size %dB ..." % (len(buffer))
+def main():
+  try:
+    for line in sys.stdin.readlines():
+      buffer += line
 
-emulator = pylibemu.Emulator()
-offset = emulator.shellcode_getpc_test(buffer)
+    print "[+] Testing buffer of size %dB ..." % (len(buffer))
 
-if offset >= 0:
-  print "[+] Shellcode I Catch You !"
-  emulator.prepare(buffer, offset)
-  emulator.test()
-  print emulator.emu_profile_output
+    emulator = pylibemu.Emulator()
+    offset = emulator.shellcode_getpc_test(buffer)
+
+    if offset >= 0:
+      print "[+] Shellcode I Catch You !"
+      emulator.prepare(buffer, offset)
+      emulator.test()
+      print emulator.emu_profile_output
+
+      with open(file_log, "a+") as logger:
+        logger.write("[+] New shellcode detected; " + get_ma_time())
+        logger.write("\nOffset=" + str(offset))
+        logger.write("\nShellcode=" + bytearray(buffer))
+        logger.write(emulator.emu_profile_output)
+
+    else:
+      print "[-] Nothing here, sir"
+
+      with open(file_log, "a+") as logger:
+        logger.write("[~] Input; " + get_ma_time())
+        logger.write("\nOffset=" + str(offset))
+        logger.write("\nInput detected=" + bytearray(buffer))
+
+      # /!\ /!\ /!\
+      emulator.run(buffer)  # Could be devastating in case of home built encoded shellcodes.
+
+    return 0
   
-  with open(file_log, "a+") as logger:
-    logger.write("[+] New shellcode detected; " + time.strftime(str(datetime.datetime.now())))
-    logger.write("Offset=" + str(offset))
-    logger.write("Shellcode=" + bytearray(buffer))
-    logger.write(emulator.emu_profile_output)
+  except:
+    raise
+    return 1
 
-else:
-  print "[-] Nothing here, sir"
-  
-  with open(file_log, "a+") as logger:
-    logger.write("[~] Input; " + time.strftime(str(datetime.datetime.now())))
-    logger.write("Offset=" + str(offset))
-    logger.write("Input detected=" + bytearray(buffer))
-  
-  # /!\ /!\ /!\
-  emulator.run(buffer)  # Could be devastating in case of home built encoded shellcodes.
+if __name__ == "__main__":
+  sys.exit(main())
