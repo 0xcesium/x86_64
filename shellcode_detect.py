@@ -37,7 +37,7 @@ def main():
       print emulator.emu_profile_output
 
       with open(file_log, "a+") as logger:
-        logger.write("[+] New shellcode detected; " + get_ma_time())
+        logger.write("[+] New shellcode detected @ " + get_ma_time())
         logger.write("\nOffset=" + str(offset))
         logger.write("\nShellcode=" + bytearray(buffer))
         logger.write(emulator.emu_profile_output)
@@ -46,7 +46,7 @@ def main():
       print "[-] Nothing here, sir"
 
       with open(file_log, "a+") as logger:
-        logger.write("[~] Input; " + get_ma_time())
+        logger.write("[~] Input @ " + get_ma_time())
         logger.write("\nOffset=" + str(offset))
         logger.write("\nInput detected=" + bytearray(buffer))
 
