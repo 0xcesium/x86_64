@@ -1,3 +1,6 @@
+; Reverse Shell in asm x86_64 Intel Arch.
+; Connects but does not include bind syscall yet
+
 BITS 64
 GLOBAL _start
 SECTION .text
