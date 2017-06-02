@@ -3,15 +3,15 @@
 Reverse shell + setreuid in ASM Intel 64 bits.
 Use Makefile to build the project fastly
 
-$ Make
+	$ Make
 
 Open another terminal then :
 
-$ nc -lvp 9876
+	$ nc -lvp 9876
 
 In the previous one, do :
 
-$ ./prs
+	$ ./prs
 
 
 Foobar.
