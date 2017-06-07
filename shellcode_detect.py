@@ -15,12 +15,12 @@ from time import strftime
 from datetime import datetime
 
 file_log = "/tmp/shellcode-detector.log"    # Put the chosen log file path here
-buffer = ""
 
 def get_ma_time():
   return strftime(str(datetime.now()))
 
 def main():
+  buffer = ""
   try:
     for line in sys.stdin.readlines():
       buffer += line
