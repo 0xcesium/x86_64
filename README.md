@@ -11,7 +11,7 @@ Open another terminal then :
 
 In the previous one, do :
 
-	$ ./prs
+	$ ./prssr64
 
 
 Foobar.
