@@ -1,4 +1,6 @@
 #!/usr/bin/env python2
+#-*- coding:utf-8 -*-
+
 # Simple Shellcode detector using the libemu API.
 # Can be used as a naive but still solid basis IDS for testing purpose.
 # Could be run as a daemon.
@@ -29,14 +31,16 @@ def main():
 
     print "[+] Testing buffer of size %dB ..." % (len(buffer))
 
-    emulator = pylibemu.Emulator()
-    offset = emulator.shellcode_getpc_test(buffer)
+    emulator  = pylibemu.Emulator()
+    offset    = emulator.shellcode_getpc_test(buffer)
 
     if offset >= 0:
       print "[+] Shellcode I Catch You !"
       emulator.prepare(buffer, offset)
       emulator.test()
-      print emulator.emu_profile_output
+
+      if emulator.emu_profile_output:
+        print emulator.emu_profile_output
 
       with open(file_log, "a+") as logger:
         logger.write("[+] New shellcode detected @ " + get_ma_time())
@@ -45,7 +49,8 @@ def main():
         logger.write(emulator.emu_profile_output)
 
     else:
-      print "[-] Nothing here, sir"
+      print "[*] Modifying offset !"
+      offset = 0
 
       with open(file_log, "a+") as logger:
         logger.write("[~] Input @ " + get_ma_time())
@@ -53,11 +58,18 @@ def main():
         logger.write("\nInput detected=" + bytearray(buffer))
 
       # /!\ /!\ /!\
+      emulator.prepare(buffer, offset)
+      emulator.test()
+
+      if emulator.emu_profile_output:
+        print emulator.emu_profile_output
+
       emulator.run(buffer)  # Could be devastating in case of home built encoded shellcodes.
 
     return 0
-  
+ 
   except:
+    print '[-] Error: Shellcode emulation failed!'
     raise
     return 1
 
