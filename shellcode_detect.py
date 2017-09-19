@@ -1,16 +1,18 @@
 #!/usr/bin/env python2
 #-*- coding:utf-8 -*-
 
-# Simple Shellcode detector using the libemu API.
-# Can be used as a naive but still solid basis IDS for testing purpose.
-# Could be run as a daemon.
-# TODO: adding self recognition of encoded shellcodes.
-
 __author__='''
 [Cs133]
 Twitter: @133_cesium
-
+'''
+__license__='''
 <+> Under the terms of the GPL v3 License.
+'''
+__description__='''
+Simple Shellcode detector using the libemu API.
+Can be used as a naive but still solid basis IDS for testing purpose.
+Could be run as a daemon.
+TODO: adding self recognition of encoded shellcodes.
 '''
 
 import sys
