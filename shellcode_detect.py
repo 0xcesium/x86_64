@@ -12,6 +12,9 @@ __description__='''
 Simple Shellcode detector using the libemu API.
 Can be used as a naive but still solid basis IDS for testing purpose.
 Could be run as a daemon.
+
+Could feed logs with false positive sometimes...
+
 TODO: adding self recognition of encoded shellcodes.
 '''
 
