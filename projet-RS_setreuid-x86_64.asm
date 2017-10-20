@@ -1,5 +1,6 @@
 ; Reverse Shell in asm x86_64 Intel Arch.
 ; Connects but does not include bind syscall yet
+; __author__: cs[133]
 ; <+> Under the terms of the GPL v3 License.
 
 BITS 64
