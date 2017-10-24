@@ -19,7 +19,7 @@ _start:
 	pop rsi
 	syscall			; rax = descripteur de fichier de la socket ouverte
 
-	; connect(FDS, {AF_INET, 9876, '192.168.0.16'}, 16)
+	; connect(FDS, {AF_INET, 9876, '127.0.0.1'}, 16)
 	mov rdi,rax		; descripteur de fichier de la socket en 1er argument
 	push 0x0100007f		; 127.0.0.1
 ;	push 0x1000a8c0		; adresse distante = 192.168.0.16 little endian
