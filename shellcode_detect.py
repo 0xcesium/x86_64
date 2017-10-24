@@ -73,9 +73,8 @@ def main():
 
     return 0
  
-  except:
-    print '[-] Error: Shellcode emulation failed!'
-    raise
+  except Excepetionas e:
+    print '[-] Error: Shellcode emulation failed!\n{}'.format(e.__class__)
     return 1
 
 if __name__ == "__main__":
