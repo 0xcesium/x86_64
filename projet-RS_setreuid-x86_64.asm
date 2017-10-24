@@ -46,7 +46,7 @@ _start:
 
 	; geteuid()
 	xor eax,eax
-	mov al,0x6b
+	mov al,0x6b		; --> syscall 107 -> geteuid
 	syscall
 
 	; setreuid(geteuid(),geteuid())
@@ -54,7 +54,7 @@ _start:
 	pop rdi
 	push rax
 	pop rsi
-	push BYTE 0x71
+	push BYTE 0x71		; --> syscall 113 -> setreuid
 	pop rax
 	syscall
 
