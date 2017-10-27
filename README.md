@@ -1,20 +1,28 @@
 # x86_64
 
 Reverse shell + setreuid in ASM Intel 64 bits.
+By default the target is 127.0.0.1.
 
-Use Makefile to build the project fastly :
+Download the repository then use Makefile to build the project fastly :
 
-	$ Make
+```
+git clone git@github.com:C3s1um133/x86_64.git
+cd x86_64/
+Make
+```
 
-Open another terminal then copy paste :
+## To test locally
 
-	$ nc -lvp 9876
+Listen a socket on localhost :
 
-In the previous one, we trigger it :
+```
+nc -lvp 9876
+```
 
-	$ ./prssr64
+Then we trigger it :
 
+```
+./prssr64
+```
 
 Foobar.
-
-#### By default : the target IP is localhost.
