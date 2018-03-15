@@ -1,4 +1,4 @@
-# x86_64
+# x86_64-Reverse Shell [![version](https://img.shields.io/badge/Version-Alpha-yellow.svg?style=style=flat-square)](https://twitter.com/133_cesium) [![license](https://img.shields.io/badge/License-GPL_3-orange.svg?style=style=flat-square)](https://github.com/C3s1um133/x86_64/blob/master/LICENSE)
 
 Reverse shell + setreuid in ASM Intel 64 bits.
 By default the target is 127.0.0.1.
