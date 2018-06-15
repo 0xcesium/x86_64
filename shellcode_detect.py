@@ -73,7 +73,7 @@ def main():
 
     return 0
  
-  except Excepetionas e:
+  except Excepetion as e:
     print '[-] Error: Shellcode emulation failed!\n{}'.format(e.__class__)
     return 1
 
